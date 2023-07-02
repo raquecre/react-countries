@@ -22,30 +22,30 @@ const CountryDetails = ({ idCountrySelected }) => {
     if (idCountrySelected !== null && idCountrySelected !== undefined) {
         const country = countries?.filter((country) => country._id === idCountrySelected)[0]
         console.log(country);
-         const imageCode = country.alpha2Code.toLowerCase(); 
+         //const imageCode = country.alpha2Code.toLowerCase(); 
         // const countryBorders = country.borders;
         // console.log(countryBorders)
         if (country !== null && country !== undefined) {
             return (
 
-                <div key={country._id} className="countryDetails">
+                <div key={country._id} className="h1 ">
 
                     <table className="table-primary table-bordered table-striped border ">
                         <thead>
-                             <th ><img src={`https://flagpedia.net/data/flags/icon/72x54/${imageCode}.png`} /> {country.name.common} </th> 
+                             <th className="" ><img className="img-fluid" src={`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`} /> {country.name.common} </th> 
                         </thead>
 
-                        <tbody>
+                        <tbody >
                             <tr key={country.capital}>
-                                <td>Capital </td>
+                                <td> <strong>Capital</strong>  </td>
                                 <td>{country.capital}</td>
                             </tr>
                             <tr key={country.area}>
-                                <td>Area </td>
+                                <td><strong>Area</strong> </td>
                                 <td>{country.area}km2</td>
                             </tr>
                             <tr key={country.alpha2Code}>
-                                <td>Border </td>
+                                <td><strong>Border</strong> </td>
                                 <td> {country.borders.map((border) => <p>{border}</p>)} </td>
                             </tr>
                         </tbody>
