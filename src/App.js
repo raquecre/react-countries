@@ -27,9 +27,6 @@ function App() {
     <div className="App">
       <Navbar />
       <CountriesList />
-      <Routes>
-        {countries?.map((country) => { <Route path={`/country-id-${country._id}`} element={<CountryDetails/>} />})} 
-      </Routes>
     </div>
     );
 }
