@@ -1,8 +1,9 @@
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.css';
+
+import 'bootstrap/dist/css/bootstrap.css'; 
 import Navbar from "./components/Navbar";
 import CountriesList from "./components/pages/CountriesList";
-import CountryDetails from "./components/pages/CountryDetails";
+
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from 'axios';
@@ -24,7 +25,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App ">
+    <div className="App">
       <Navbar />
       <CountriesList />
     </div>

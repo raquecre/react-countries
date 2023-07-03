@@ -5,19 +5,18 @@ import { useState } from "react"
 import axios from 'axios';
 import React from "react";
 
+
 const CountryDetails = ({ idCountrySelected }) => {
     const urlCountries = 'https://ih-countries-api.herokuapp.com/countries';
     const [countries, setCountries] = useState();
- 
+
     React.useEffect(() => {
         axios.get(urlCountries).then((response) => {
             setCountries(response.data);
         })
 
-
     }, [])
-    //? ya tengo el objeto seleccionado, pero en cuanto añado el return el logueo de country marca como indefinido
-    //^ tengo que gestionar que pasa cuando es nulo(hecho) y cuando es repetido, para que no lo pinte
+
 
     if (idCountrySelected !== null && idCountrySelected !== undefined) {
         const country = countries?.filter((country) => country._id === idCountrySelected)[0]
@@ -27,25 +26,28 @@ const CountryDetails = ({ idCountrySelected }) => {
         // console.log(countryBorders)
         if (country !== null && country !== undefined) {
 
-
-            const countriesBorders = country.borders.map((countryInBorder) => {
-                countries.map((completeCountry) => {
-                    if (completeCountry.alpha3Code === countryInBorder) {
-                        console.log(completeCountry.name.common);
-                        return <div>{completeCountry.name.common}</div>
-                    }
-                })
-            })
            
+            const countriesBordersArray = [];
+                country.borders.map((countryInBorder) => {
+                    countries.map((completeCountry) => {
+                        if (completeCountry.alpha3Code === countryInBorder) {
+                            console.log(completeCountry.name.common);
+                            return countriesBordersArray.push(completeCountry.name.common)
+                        }
+                    })
+                })
+
+            console.log(countriesBordersArray);
 
             return (
 
-                <div key={country._id} className="h1 ">
+                <div key={`countryDetails${country._id}`} className="h2 ">
 
                     <table className="table-primary table-bordered d-flex justify-content-around border ">
+
                         <tbody >
-                            <tr >
-                                <td  ><img src={`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`} /> {country.name.common} </td>
+                            <tr className='pt-3 d-flex flex-column align-items-center h1' >
+                                <img src={`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`} /> {country.name.common}
                             </tr>
 
                             <tr >
@@ -58,7 +60,8 @@ const CountryDetails = ({ idCountrySelected }) => {
                             </tr>
                             <tr >
                                 <td><strong>Border</strong> </td>
-                                <td>{countriesBorders}</td>
+                                {/*  ^Parche para poder crear los links */}
+                                <td className="p-3">{countriesBordersArray.map((countryInBorder) => <p /* onClick={changeCountry()} */ >{countryInBorder}  </p>)}</td>
                             </tr>
                         </tbody>
                     </table>
