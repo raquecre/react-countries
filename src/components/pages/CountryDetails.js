@@ -31,27 +31,27 @@ const CountryDetails = ({ idCountrySelected }) => {
                 country.borders.map((countryInBorder) => {
                     countries.map((completeCountry) => {
                         if (completeCountry.alpha3Code === countryInBorder) {
-                            console.log(completeCountry.name.common);
+                            
                             return countriesBordersArray.push(completeCountry.name.common)
                         }
                     })
                 })
 
-            console.log(countriesBordersArray);
+            
 
             return (
 
-                <div key={`countryDetails${country._id}`} className="h2 ">
+                <div key={`countryDetails${country._id}`} className="h2 m-5 ">
 
-                    <table className="table-primary table-bordered d-flex justify-content-around border ">
+                    <table className="table-primary table-bordered d-flex justify-content-around border position-absolute top-50 end-0 translate-middle ">
 
                         <tbody >
-                            <tr className='pt-3 d-flex flex-column align-items-center h1' >
+                            <tr className='pt-3 d-flex flex-column align-items-center h1 p-4 m-5' >
                                 <img src={`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`} /> {country.name.common}
                             </tr>
 
-                            <tr >
-                                <td> <strong>Capital</strong>  </td>
+                            <tr  >
+                                <td > <strong>Capital</strong>  </td>
                                 <td>{country.capital}</td>
                             </tr>
                             <tr >
