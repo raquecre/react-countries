@@ -4,11 +4,12 @@
 import { useState } from "react"
 import axios from 'axios';
 import React from "react";
+import { Link } from "react-router-dom";
 
-
-const CountryDetails = ({ idCountrySelected }) => {
-    const urlCountries = 'https://ih-countries-api.herokuapp.com/countries';
+const CountryDetails = ({ showCountry, updateState }) => {
+    const urlCountries = 'https://ih-countries-api.herokuapp.com/countries?code=$';
     const [countries, setCountries] = useState();
+    const [actualCountryDetails, setActualCountryDetails] = useState()
 
     React.useEffect(() => {
         axios.get(urlCountries).then((response) => {
@@ -16,62 +17,75 @@ const CountryDetails = ({ idCountrySelected }) => {
         })
 
     }, [])
+    console.log(showCountry);
+    /*     if (showCountry !== null && showCountry !== undefined) { */
+    /*         const country = countries?.filter((country) => country._id === showCountry)[0]
+     */
+    //const imageCode = country.alpha2Code.toLowerCase(); 
+    // const countryBorders = country.borders;
+    // console.log(countryBorders)
+    /*         if (country !== null && country !== undefined) {
+     */
+    const bordersandid = showCountry.borders.map((countryInBorder) => {
+        countries?.map((completeCountry) => {
+            if (completeCountry.alpha3Code === countryInBorder) {
+                console.log(countryInBorder);
+                console.log(completeCountry.name.common);
+
+                return (<Link onClick={() => updateState(completeCountry)}>{completeCountry.name.common}</Link>)
+            }
+        })
+    })
 
 
-    if (idCountrySelected !== null && idCountrySelected !== undefined) {
-        const country = countries?.filter((country) => country._id === idCountrySelected)[0]
 
-        //const imageCode = country.alpha2Code.toLowerCase(); 
-        // const countryBorders = country.borders;
-        // console.log(countryBorders)
-        if (country !== null && country !== undefined) {
+    return (
 
-           
-            const countriesBordersArray = [];
-                country.borders.map((countryInBorder) => {
-                    countries.map((completeCountry) => {
-                        if (completeCountry.alpha3Code === countryInBorder) {
-                            
-                            return countriesBordersArray.push(completeCountry.name.common)
-                        }
-                    })
-                })
+        <div key={`countryDetails${showCountry._id}`} className="h2 m-5 ">
+            {/* //TODO dejar el tamaño de la tabla fijo para que el contenido en los casos de países con nombres largos no se sobreponga al scroll */}
+            <table className="table-primary table-bordered d-flex justify-content-around border position-absolute top-50 end-0 translate-middle ">
 
-            
+                <tbody >
+                    <tr className='pt-3 d-flex flex-column align-items-center h1 p-4 m-5' >
+                        <img src={`https://flagpedia.net/data/flags/icon/72x54/${showCountry.alpha2Code.toLowerCase()}.png`} /> {showCountry.name.common}
+                    </tr >
 
-            return (
+                    <tr  >
+                        <td className=" p-4 d-flex"> <strong>Capital</strong>  </td>
+                        <td className=" p-4">{showCountry.capital}</td>
+                    </tr>
+                    <tr >
+                        <td className=" p-4"><strong>Area</strong> </td>
+                        <td className=" p-4">{showCountry.area} km2</td>
+                    </tr>
+                    <tr >
+                        <td className=" p-4"><strong>Border</strong> </td>
 
-                <div key={`countryDetails${country._id}`} className="h2 m-5 ">
+                        <td className="d-flex flex-column" >
+                            {showCountry.borders.map((countryInBorder) =>
+                            countries?.map((completeCountry) => {
+                                if (completeCountry.alpha3Code === countryInBorder) {
+                                    console.log(countryInBorder);
+                                    console.log(completeCountry.name.common);
 
-                    <table className="table-primary table-bordered d-flex justify-content-around border position-absolute top-50 end-0 translate-middle ">
-
-                        <tbody >
-                            <tr className='pt-3 d-flex flex-column align-items-center h1 p-4 m-5' >
-                                <img src={`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`} /> {country.name.common}
-                            </tr>
-
-                            <tr  >
-                                <td > <strong>Capital</strong>  </td>
-                                <td>{country.capital}</td>
-                            </tr>
-                            <tr >
-                                <td><strong>Area</strong> </td>
-                                <td>{country.area}km2</td>
-                            </tr>
-                            <tr >
-                                <td><strong>Border</strong> </td>
-                                {/*  ^Parche para poder crear los links */}
-                                <td className="p-3">{countriesBordersArray.map((countryInBorder) => <p /* onClick={changeCountry()} */ >{countryInBorder}  </p>)}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    return (
+                                        <p >
+                                            <Link onClick={() => updateState(completeCountry)}>{completeCountry.name.common}</Link>
+                                        </p>
+                                    )
+                                }
+                            })
+                        )}</td>
+                    </tr>
+                </tbody>
+            </table>
 
 
-                </div>
-            )
-        }
+        </div>
+    )
+    /*   } */
 
-    }
 }
+/* } */
 
 export default CountryDetails;
