@@ -43,11 +43,11 @@ const CountryDetails = ({ showCountry, updateState }) => {
 
         <div key={`countryDetails${showCountry._id}`} className="h2 m-5 ">
             {/* //TODO dejar el tamaño de la tabla fijo para que el contenido en los casos de países con nombres largos no se sobreponga al scroll */}
-            <table className="table-primary table-bordered d-flex justify-content-around border position-absolute top-50 end-0 translate-middle ">
+            <table className="table-primary table-bordered d-flex justify-content-around border  ">
 
                 <tbody >
                     <tr className='pt-3 d-flex flex-column align-items-center h1 p-4 m-5' >
-                        <img src={`https://flagpedia.net/data/flags/icon/72x54/${showCountry.alpha2Code.toLowerCase()}.png`} /> {showCountry.name.common}
+                        <img height='auto' width='75%' src={`https://flagpedia.net/data/flags/icon/72x54/${showCountry.alpha2Code.toLowerCase()}.png`} /> {showCountry.name.common}
                     </tr >
 
                     <tr  >
