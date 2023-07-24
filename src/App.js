@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import CountriesList from "./components/pages/CountriesList";
 
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import React from "react";
 
@@ -15,20 +15,18 @@ function App() {
 
   const urlCountries = 'https://ih-countries-api.herokuapp.com/countries';
   const [countries, setCountries] = useState();
-  const [fetching ,setFetching] = useState(true);
-/* //~  let showCountryDetails = false; */
+  const [fetching, setFetching] = useState(true);
+  /* //~  let showCountryDetails = false; */
 
 
   React.useEffect(() => {
     axios.get(urlCountries).then((response) => {
-
-      setCountries(response.data)
-      useEffect(()=> setFetching(false),[]);
-      ;
+      return fetch(setCountries(response.data))
+      .then(setFetching(false));
     })
 
   }, [])
- 
+
 
   return (
     <div className="App">
@@ -36,7 +34,7 @@ function App() {
       <CountriesList />
       <Routes>
         {countries?.foreach(country => {
-          <Route path={`/${country.name.common}`} element={<CountryDetails/>}></Route>
+          <Route path={`/${country.name.common}`} element={<CountryDetails />}></Route>
         })}
       </Routes>
 
