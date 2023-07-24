@@ -34,7 +34,7 @@ const CountriesList = (props) => {
 
     return (
         <div className="ms-5 mt-5 d-flex justify-content-around align-self-sm-center ">
-            {fetching && <img src="https://images.unsplash.com/photo-1625470496744-a01bf36a262f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" />}
+            {fetching && <img alt="" src="https://images.unsplash.com/photo-1625470496744-a01bf36a262f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" />}
             <div className="overflow-y-scroll vh-100">
                 <table className='table-primary table-bordered border table-hover m-5  '>
                     <tbody>
@@ -42,10 +42,10 @@ const CountriesList = (props) => {
                         {countries?.map((country) => {
                             const imageCode = country.alpha2Code.toLowerCase();
                             return (
-                                /* //&aquí hay que cambiar que en vez del id me pase LO CONSIGO CON USE EFFECT s */
+                                
                                 <tr>
                                     <td className=' pt-3 d-flex flex-column align-items-center' key={country._id} onClick={() => { updateState(country) }} >
-                                        <img src={`https://flagpedia.net/data/flags/icon/72x54/${imageCode}.png`} /> <p className="h5 mt-2"> <strong >{country.name.common}</strong> </p>
+                                        <img alt="" src={`https://flagpedia.net/data/flags/icon/72x54/${imageCode}.png`} /> <p className="h5 mt-2"> <strong >{country.name.common}</strong> </p>
                                     </td>
                                 </tr>
                             )

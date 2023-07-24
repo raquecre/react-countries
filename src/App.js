@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import CountriesList from "./components/pages/CountriesList";
 
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import React from "react";
 

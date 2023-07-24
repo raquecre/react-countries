@@ -47,7 +47,7 @@ const CountryDetails = ({ showCountry, updateState }) => {
 
                 <tbody >
                     <tr className='pt-3 d-flex flex-column align-items-center h1 p-4 m-5' >
-                        <img height='auto' width='75%' src={`https://flagpedia.net/data/flags/icon/72x54/${showCountry.alpha2Code.toLowerCase()}.png`} /> {showCountry.name.common}
+                        <img alt="" height='auto' width='75%' src={`https://flagpedia.net/data/flags/icon/72x54/${showCountry.alpha2Code.toLowerCase()}.png`} /> {showCountry.name.common}
                     </tr >
 
                     <tr  >
