@@ -25,18 +25,19 @@ const CountryDetails = ({ showCountry, updateState }) => {
     // console.log(countryBorders)
     /*         if (country !== null && country !== undefined) {
      */
-    const bordersandid = () => {
-        showCountry.borders.foreach((countryInBorder) => {
-            countries?.foreach((completeCountry) => {
-                if (completeCountry.alpha3Code === countryInBorder) {
-                    console.log(countryInBorder);
-                    console.log(completeCountry.name.common);
 
-                    return (<Link onClick={() => updateState(completeCountry)}>{completeCountry.name.common}</Link>)
-                }
-            })
+
+    showCountry.borders.foreach((countryInBorder) => {
+        countries?.foreach((completeCountry) => {
+            if (completeCountry.alpha3Code === countryInBorder) {
+                console.log(countryInBorder);
+                console.log(completeCountry.name.common);
+
+                return (<Link onClick={() => updateState(completeCountry)}>{completeCountry.name.common}</Link>)
+            }
         })
-    }
+    })
+
 
 
 
