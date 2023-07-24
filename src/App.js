@@ -15,7 +15,7 @@ function App() {
 
   const urlCountries = 'https://ih-countries-api.herokuapp.com/countries';
   const [countries, setCountries] = useState();
-  const  setFetching = useState(true);
+  const [fetching, setFetching] = useState(true);
   /* //~  let showCountryDetails = false; */
 
 
@@ -25,7 +25,7 @@ function App() {
       .then(setFetching(false));
     })
 
-  }, [])
+  }, [fetching])
 
 
   return (
