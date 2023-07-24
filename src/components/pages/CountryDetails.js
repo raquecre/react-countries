@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 const CountryDetails = ({ showCountry, updateState }) => {
     const urlCountries = 'https://ih-countries-api.herokuapp.com/countries?code=$';
     const [countries, setCountries] = useState();
-    const [actualCountryDetails, setActualCountryDetails] = useState()
 
     React.useEffect(() => {
         axios.get(urlCountries).then((response) => {
@@ -26,16 +25,18 @@ const CountryDetails = ({ showCountry, updateState }) => {
     // console.log(countryBorders)
     /*         if (country !== null && country !== undefined) {
      */
-    const bordersandid = showCountry.borders.map((countryInBorder) => {
-        countries?.map((completeCountry) => {
-            if (completeCountry.alpha3Code === countryInBorder) {
-                console.log(countryInBorder);
-                console.log(completeCountry.name.common);
+    const bordersandid = () => {
+        showCountry.borders.foreach((countryInBorder) => {
+            countries?.foreach((completeCountry) => {
+                if (completeCountry.alpha3Code === countryInBorder) {
+                    console.log(countryInBorder);
+                    console.log(completeCountry.name.common);
 
-                return (<Link onClick={() => updateState(completeCountry)}>{completeCountry.name.common}</Link>)
-            }
+                    return (<Link onClick={() => updateState(completeCountry)}>{completeCountry.name.common}</Link>)
+                }
+            })
         })
-    })
+    }
 
 
 
@@ -62,20 +63,20 @@ const CountryDetails = ({ showCountry, updateState }) => {
                         <td className=" p-4"><strong>Border</strong> </td>
 
                         <td className="d-flex flex-column" >
-                            {showCountry.borders.map((countryInBorder) =>
-                            countries?.map((completeCountry) => {
-                                if (completeCountry.alpha3Code === countryInBorder) {
-                                    console.log(countryInBorder);
-                                    console.log(completeCountry.name.common);
+                            {showCountry.borders.foreach((countryInBorder) =>
+                                countries?.foreach((completeCountry) => {
+                                    if (completeCountry.alpha3Code === countryInBorder) {
+                                        console.log(countryInBorder);
+                                        console.log(completeCountry.name.common);
 
-                                    return (
-                                        <p >
-                                            <Link onClick={() => updateState(completeCountry)}>{completeCountry.name.common}</Link>
-                                        </p>
-                                    )
-                                }
-                            })
-                        )}</td>
+                                        return (
+                                            <p >
+                                                <Link onClick={() => updateState(completeCountry)}>{completeCountry.name.common}</Link>
+                                            </p>
+                                        )
+                                    }
+                                })
+                            )}</td>
                     </tr>
                 </tbody>
             </table>

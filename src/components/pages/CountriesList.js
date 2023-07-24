@@ -8,7 +8,7 @@ import CountryDetails from "./CountryDetails";
 //Cada enlace debe ser un react-router-dom Link que utilizaremos para enviar el código del país (alpha3Code) a través de la URL.
 
 
-const CountriesList = (props) => {
+const CountriesList = () => {
 
 
     //Tomar valores de la api + mensaje tiempo de espera

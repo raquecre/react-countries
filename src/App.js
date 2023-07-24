@@ -15,8 +15,8 @@ function App() {
 
   const urlCountries = 'https://ih-countries-api.herokuapp.com/countries';
   const [countries, setCountries] = useState();
-  const [fetching, setFetching] = useState(true);
-  let showCountryDetails = false;
+  const [ setFetching] = useState(true);
+/* //~  let showCountryDetails = false; */
 
 
   React.useEffect(() => {
@@ -34,7 +34,7 @@ function App() {
       <Navbar />
       <CountriesList />
       <Routes>
-        {countries?.map((country) => {
+        {countries?.foreach(country => {
           <Route path={`/${country.name.common}`} element={<CountryDetails/>}></Route>
         })}
       </Routes>
