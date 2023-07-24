@@ -33,7 +33,7 @@ function App() {
       <Navbar />
       <CountriesList />
       <Routes>
-        {countries?.foreach(country => {
+        {countries?.forEach(country => {
           <Route path={`/${country.name.common}`} element={<CountryDetails />}></Route>
         })}
       </Routes>

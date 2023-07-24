@@ -27,8 +27,8 @@ const CountryDetails = ({ showCountry, updateState }) => {
      */
 
 
-    showCountry.borders.foreach((countryInBorder) => {
-        countries?.foreach((completeCountry) => {
+    showCountry.borders.forEach((countryInBorder) => {
+        countries?.forEach((completeCountry) => {
             if (completeCountry.alpha3Code === countryInBorder) {
                 console.log(countryInBorder);
                 console.log(completeCountry.name.common);
@@ -64,8 +64,8 @@ const CountryDetails = ({ showCountry, updateState }) => {
                         <td className=" p-4"><strong>Border</strong> </td>
 
                         <td className="d-flex flex-column" >
-                            {showCountry.borders.foreach((countryInBorder) =>
-                                countries?.foreach((completeCountry) => {
+                            {showCountry.borders.forEach((countryInBorder) =>
+                                countries?.forEach((completeCountry) => {
                                     if (completeCountry.alpha3Code === countryInBorder) {
                                         console.log(countryInBorder);
                                         console.log(completeCountry.name.common);
