@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import CountriesList from "./components/pages/CountriesList";
 
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import React from "react";
 
@@ -15,7 +15,7 @@ function App() {
 
   const urlCountries = 'https://ih-countries-api.herokuapp.com/countries';
   const [countries, setCountries] = useState();
-  const [ setFetching] = useState(true);
+  const [fetching ,setFetching] = useState(true);
 /* //~  let showCountryDetails = false; */
 
 
@@ -23,7 +23,8 @@ function App() {
     axios.get(urlCountries).then((response) => {
 
       setCountries(response.data)
-      setFetching(false);
+      useEffect(()=> setFetching(false),[]);
+      ;
     })
 
   }, [])
